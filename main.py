@@ -33,7 +33,7 @@ def signup():
 
 #The user's password and password-confirmation do not match.
     verifypasswordError = ''
-    if password != varify_password:
+    if varify_password == '' or password != varify_password:
         verifypasswordError= " Password does not match"
         
 #The user provides an email, but it's not a valid email. Note: the email field may be left empty, 
@@ -43,8 +43,8 @@ def signup():
     emailError = ''
     atTheRateValidation = email.find('@') == -1 or (email.find('@') > -1 and email.count('@') > 1)
     DOtValidation = email.find('.') == -1 or (email.find('.') > -1 and email.count('.') > 1) 
-    if email == '' or len(email) > 20 or  len(email) < 3 or atTheRateValidation or DOtValidation:
-    #if email == '' or len(email) > 20 or  len(email) < 3 or ( not re.match(r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$", email))
+    if len(email) > 20 or  len(email) < 3 or atTheRateValidation or DOtValidation:
+    #if len(email) > 20 or  len(email) < 3 or ( not re.match(r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$", email))
         emailError= "That's not a valid email"
     if usernameError == '' and passwordError == '' and verifypasswordError == '' and emailError == '':
         return render_template('welcome_page.html', userName=user_name)
