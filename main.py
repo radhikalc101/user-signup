@@ -46,6 +46,8 @@ def signup():
     if len(email) > 20 or  len(email) < 3 or atTheRateValidation or DOtValidation:
     #if len(email) > 20 or  len(email) < 3 or ( not re.match(r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$", email))
         emailError= "That's not a valid email"
+    if email == '':
+        emailError = ''
     if usernameError == '' and passwordError == '' and verifypasswordError == '' and emailError == '':
         return render_template('welcome_page.html', userName=user_name)
     else:
